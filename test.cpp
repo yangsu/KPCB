@@ -1,16 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include "queue.h"
-void sleep(unsigned int mseconds)
-{
-    clock_t goal = mseconds + clock();
-    while (goal > clock());
-}
 
 int main(int argc, char const *argv[]) {
   BoundedQueue q(50000000);
-  printf("size of BoundedQueue %d\n", (int)sizeof(struct BoundedQueue));
   bool success;
   int count = 0;
   for (int i = 0; i < 60000000; ++i) {
@@ -22,6 +15,8 @@ int main(int argc, char const *argv[]) {
   int result;
   for (int i = 0; i < 60000000; ++i) {
     success = q.dequeue(&result);
+    if (i % 10000000 == 0)
+      printf("%d\n", result);
     count += (success) ? 1 : 0;
   }
   printf("dequeued %d\n", count);

@@ -1,6 +1,7 @@
-#include "queue.h"
 #include <stdlib.h>
 #include <string.h>
+#include "queue.h"
+
 BoundedQueue::BoundedQueue(int n) {
   bound = n;
   size = blockSize = 0;
@@ -21,10 +22,8 @@ bool BoundedQueue::enqueue(int n) {
     }
     if (size == blockSize) {
       int doublesize = blockSize * 2;
-      int boundSize = bound*sizeof(int);
-      blockSize = (doublesize > boundSize) ? boundSize : doublesize;
+      blockSize = (doublesize > bound) ? bound : doublesize;
       int* temp = (int*)malloc(blockSize*sizeof(int));
-      
       memcpy(temp, head, size*sizeof(int));
       free(base);
       base = temp;
