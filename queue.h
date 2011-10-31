@@ -1,3 +1,8 @@
+/**
+  * KPCB Engineering Fellows Program - Challenge Problem Attempt
+  * Applicant: Yang Su  
+  * Email: yang.su@duke.edu
+  */
 class BoundedQueue {
 public:
 /**
