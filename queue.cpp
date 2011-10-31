@@ -4,8 +4,12 @@
 
 BoundedQueue::BoundedQueue(int n) {
   bound = n;
-  size = blockSize = 0;
-  base = head = tail = 0;
+  size = 0;
+  
+  base = (int*)malloc(sizeof(int));
+  head = base;
+  tail = base;
+  blockSize = 1;
 }
 
 BoundedQueue::~BoundedQueue() {
@@ -14,12 +18,6 @@ BoundedQueue::~BoundedQueue() {
 
 bool BoundedQueue::enqueue(int n) {
   if (size < bound) {
-    if (size == 0) {
-      base = (int*)malloc(sizeof(int));
-      head = base;
-      tail = base;
-      blockSize = 1;
-    }
     if (size == blockSize) {
       int doublesize = blockSize * 2;
       blockSize = (doublesize > bound) ? bound : doublesize;
