@@ -19,3 +19,7 @@ In order to save memory and allow for easy enqueuing and dequeuing of numbers fr
 * **queue.h** - heading for the BoundedQueue Class
 * **queue.cpp** - implementation details of the BoundedQueue Class
 * **test.cpp** - a simple test that enqueues and dequeues a large number of elements to test if the the program produces the correct output
+
+to run:
+
+    g++ queue.cpp test.cpp -o test; time ./test
