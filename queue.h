@@ -13,22 +13,18 @@ public:
     * queue is already full.
     */
   bool enqueue(int n);
-  /** dequeue - function should return an integer if one is currently stored in
+  /** 
+    * dequeue - function should return an integer if one is currently stored in
     * the queue. The function should properly handle the case where the queue is
     * empty.
     */
   bool dequeue(int* ptr);
   
-  struct __attribute__((__packed__)) node
-  {
-    int value;
-    node* next;
-    node(int n) {value = n;}
-  };
 private:
-  
-  node* head;
-  node* tail;
   int size;
+  int blockSize;
   int bound;
+  int* base;
+  int* head;
+  int* tail;
 };
