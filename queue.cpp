@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "queue.h"
 
 #define INITIAL_SIZE 1
@@ -21,18 +22,16 @@ BoundedQueue::~BoundedQueue() {
 bool BoundedQueue::enqueue(int n) {
   if (size < bound) {
     if (size == blockSize) {
-      int doublesize = blockSize << 1;
-      blockSize = (doublesize > bound) ? bound : doublesize;
+      int c1 = base + blockSize - head;
+      int c2 = size - c1;
+
+      blockSize = blockSize << 1;
+      blockSize = (blockSize > bound) ? bound : blockSize;
       int* temp = (int*)malloc(blockSize*sizeof(int));
       
-      if (tail >= head)
-        memcpy(temp, head, size*sizeof(int));
-      else {
-        int c1 = base + blockSize - head;
-        int c2 = size - c1;
-        memcpy(temp, head, c1*sizeof(int));
-        memcpy(temp + c1, tail, c2*sizeof(int));
-      }
+      memcpy(temp, head, c1*sizeof(int));
+      memcpy(temp + c1, base, c2*sizeof(int));
+
       free(base);
       base = temp;
       head = base;
