@@ -19,8 +19,10 @@ In order to save memory and allow for easy enqueuing and dequeuing of numbers fr
 * **queue.h** - heading for the BoundedQueue Class
 * **queue.cpp** - implementation details of the BoundedQueue Class
   * use *INITIAL_SIZE* to adjust the initial size of a new BoundedQueue. Default is 1
-* **test.cpp** - a simple test that enqueues and dequeues a large number of elements to test if the the program produces the correct output
+* **storagetest.cpp** - a simple test that enqueues and dequeues a large number of elements (268435456 ints => 256\*1024\*1024\* 4 = 1GB)
+* **correctnesstest.cpp** - a test that tests BoundedQueue against the STL queue and produces two output files, one corresponding to the operations in BoundedQueue, and the other corresponding to the operations in STL queue
+* **test.sh** - testing script that compiles BoundedQueue, times storagetest and runs correctness test with various parameters (the outputs are compared using diff), then cleans up the directory
 
 to run test:
 
-    g++ queue.cpp test.cpp -o test; time ./test
+    ./test.sh
