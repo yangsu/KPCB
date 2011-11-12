@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]) {
     srand(0);
     int cc = rand() % 2;
     int num = rand() % 100000;
-    for (unsigned int i = 0; i < 1000000; ++i) {
+    for (unsigned int i = 0; i < 1000; ++i) {
       switch (cc) {
         case 0:
           e(num);
