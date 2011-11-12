@@ -16,4 +16,4 @@ for i in {0..20}; do
   diff $BQOUT $STLQOUT
 done
 
-rm queue.a storage correctness
+rm queue.a storage correctness $BQOUT $STLQOUT
